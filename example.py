@@ -56,9 +56,9 @@ def validate_dob(f):
     return wrapper
 
 
-@app.route("/")
+@app.route("/ping")
 def helloworld():
-    return jsonify({'result':"Helloworld"}),200
+    return jsonify({}),200
 
 @app.route("/user/<username>",methods=['PUT'])
 @validate_username
