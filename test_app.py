@@ -30,10 +30,6 @@ class TestApp(unittest.TestCase):
     def tearDown(self):
         self.db.users.remove({})
 
-    def test_endpoint_responce(self):
-        response = self.app.get('user/rajiv')
-        assert str(response.status_code) == '200'
-        # self.assertEqual(response.status_code, 200)
     def test_add_user_responce(self):
         response = self.app.put('user/rajivrdd',data='{"dataOfBirth":"1991-05-15"}',content_type='application/json')
         assert str(response.status_code) == '204'
@@ -41,9 +37,9 @@ class TestApp(unittest.TestCase):
         response = self.app.put('user/rajivrdd@',data='{"dataOfBirth":"1991-05-15"}',content_type='application/json')
         assert str(response.status_code) == '400'
     def test_invalid_user_get(self):
-        response = self.app.get('user/rajivrdd')
+        response = self.app.get('user/rajivrdd123')
+        # print("invalid user ------"+str(response.status_code))
         assert str(response.status_code) == '404'
-    
     
 if __name__ == '__main__':
     unittest.main()
