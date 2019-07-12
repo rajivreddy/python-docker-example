@@ -1,10 +1,11 @@
 from pymongo import MongoClient
 from pymongo import errors
+import os
 
 class DatabaseHelper(object):
     def __init__(self):
         try:
-            self.client = MongoClient('127.0.0.1:27017')
+            self.client = MongoClient(os.getenv('DB_URL'))
             self.db = self.client.production
             self.users = self.db.users
         except errors.ServerSelectionTimeoutError as err:
